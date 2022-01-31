@@ -382,3 +382,73 @@ function opposite(n) {
 // Task
 // Given a year, return the century it is in.
 
+// Examples
+// 1705 --> 18
+// 1900 --> 19
+// 1601 --> 17
+// 2000 --> 20
+function century(year) {
+    return Math.ceil(year / 100);
+  }
+
+//   Convert a String to a Number!
+//   Description
+//   We need a function that can transform a string into a number. What ways of achieving this do you know?
+  
+//   Note: Don't worry, all inputs will be strings, and every string is a perfectly valid representation of an integral number.
+
+var stringToNumber = function(str){
+    return parseInt(str);
+  }
+
+  
+// Number of People in the Bus
+//   There is a bus moving in the city, and it takes and drop some people in each bus stop.
+//   You are provided with a list (or array) of integer pairs. Elements of each pair represent number of people get into bus (The first item) and number of people get off the bus (The second item) in a bus stop.
+//   Your task is to return number of people who are still in the bus after the last bus station (after the last array). Even though it is the last bus stop, the bus is not empty and some people are still in the bus, and they are probably sleeping there :D 
+//   Take a look on the test cases.
+  
+//   Please keep in mind that the test cases ensure that the number of people in the bus is always >= 0. So the return integer can't be negative.  
+//   The second value in the first integer array is 0, since the bus is empty in the first bus stop.
+
+let number = function(busStops){
+    let peopleIn = 0;
+    let peopleOut = 0;
+      for (let i=0; i<busStops.length; i++) {
+        peopleIn += busStops[i][0];
+        peopleOut += busStops[i][1];
+    }
+    return peopleIn - peopleOut;
+  }
+
+// quick solve:
+const number = (busStops) => busStops.reduce((rem, [on, off]) => rem + on - off, 0);
+
+// Printer Errors
+// In a factory a printer prints labels for boxes. For one kind of boxes the printer has to use colors which, for the sake of simplicity, are named with letters from a to m.
+// The colors used by the printer are recorded in a control string. For example a "good" control string would be aaabbbbhaijjjm meaning that the printer used three times color a, four times color b, one time color h then one time color a...
+// Sometimes there are problems: lack of colors, technical malfunction and a "bad" control string is produced e.g. aaaxbbbbyyhwawiwjjjwwm with letters not from a to m.
+
+// You have to write a function printer_error which given a string will return the error rate of the printer as a string representing a rational whose numerator is the number of errors and the denominator the length of the control string. Don't reduce this fraction to a simpler expression.
+// The string has a length greater or equal to one and contains only letters from ato z
+
+function printerError(s) {
+    const dic = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm'];
+    const splitString = s.split('');
+    let error = 0;
+    splitString.map((x) => dic.includes(x) === false ? error += 1 : error += 0);
+    
+   return `${error}/${s.length}`;
+}
+
+// Best: 
+function printerError(s) {
+    // your code
+    var count = 0;
+    for(var i = 0; i < s.length; i++) {
+      if (s[i] > "m") {
+        count++;
+      }
+    }
+    return count+"/"+s.length;
+}
